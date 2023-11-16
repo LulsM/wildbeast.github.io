@@ -1,22 +1,20 @@
+/* RESET */
 * {
     margin: 0px;
     padding: 0px;
     text-decoration: none;
     list-style: none;
 }
-
 body {
     font-family:'Volkhov', Helvetica, sans-serif serif;
 }
-
 img {
-    width: 100%;
     display: block;
+    width: 100%;
     border-radius: 6px;
 }
 
 /*GRID GERAL*/
-
 .estrutura {
     display: grid;
     grid-template-columns: minmax(160px, 1fr) 3fr 300px;
@@ -35,16 +33,13 @@ img {
     grid-template-columns: 1fr auto;
     align-items: center;
 }
-
 .logo {
     max-width: 200px;
 }
-
 .header nav ul {
     display: flex;
     flex-wrap: wrap;
 }
-
 nav a {
     display: block;
     padding: 10px;
@@ -54,23 +49,19 @@ nav a {
     border-radius: 6px;
     transition: 0.2s;
 }
-
 .header nav a:hover {
     background:  rgba(0,0,0,.5);
 }
-
 .header li + li {
     margin-left: 32px;
 }
 
 /* SIDENAV */
-
 .sidenav {
     grid-area: sidenav;
     background-color: #fafbfc;
     padding: 30px;
 }
-
 .sidenav li a {
     display: block;
     min-width: 60px;
@@ -82,9 +73,128 @@ nav a {
     box-shadow: 5px 5px 15px 0px rgba(44,44,44,0.15);
     transition: .2s ease-out;
 }
-
 .sidenav li a:hover {
     background: #b07dfb;
+}
+
+
+/* CONTENT */
+.content {
+    grid-area: content;
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 30px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 30px;
+}
+
+/* TITULO */
+.titulo {
+    color: #b07dfb;
+}
+.titulo h1{
+    font-size: 3.75em;
+    line-height: 1;
+    font-weight: 700;
+}
+.titulo span {
+    font-size: 0.875em;
+    font-style: italic;
+}
+
+/* CARACTERISTICAS */
+.caracteristicas {
+    display: flex;
+    align-items: flex-start;
+}
+.caracteristicas > div {
+    width: 80px;
+    text-align: center;
+    background: linear-gradient(135deg, #8844ee, #b07dfb);
+    border-radius: 6px;
+    box-shadow: 5px 5px 15px 0px rgba(44,44,44,0.15);
+    position: relative;
+}
+
+.caracteristicas > div:first-child {
+    margin-right: 30px;
+}
+
+.caracteristicas span {
+    display: block;
+    color: #b07dfb;
+}
+
+.numero {
+    color: #b07dfb;
+    font-size: 3em;
+    line-height: 1;
+    margin: 10px auto;
+}
+
+.rotulo {
+    background: white;
+    border-radius: 0 0 6px 6px;
+    padding: 5px 0;
+    position: relative;
+    top: 2px;
+}
+
+/* INFORMAÇÕES */
+.destaque {
+    font-size: 0.875em;
+    color: #b07dfb;
+    max-width: 16em;
+}
+
+p {
+    font-size: 1.2em;
+    font-weight: 1.6;
+    letter-spacing: -0.005em;
+    color: #1d1d1d;
+}
+
+.informacoes p + p {
+    margin-top: 30px;
+}
+
+.citacao, .atributos {
+    align-self: start;
+    padding: 30px;
+    border-radius: 6px;
+    box-shadow: 5px 5px 15px 0px rgba(44,44,44,0.15);
+    background: linear-gradient(135deg, #8844ee, #b07dfb);
+}
+
+.citacao p {
+    max-width:  500px;
+    margin: 0 auto;
+    color: white;
+    font-size: 1.5em;
+    font-style: italic;
+    text-align: center;
+}
+
+.atributos li {
+    color: white;
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 1.125em;
+    padding: 16px;
+}
+
+.atributos li + li {
+    border-top: 2px solid #b07dfb;
+}
+
+.imagem-1 {
+    grid-row: span 2;
+    align-self: end;
+}
+
+/* COlUNA PONTA A PONTA */
+.column-wide {
+    grid-column: 1 / -1;
 }
 
 /* ANUNCIOS */
@@ -95,12 +205,10 @@ nav a {
     align-content: start;
     padding: 30px;
     gap: 30px;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
 }
 
-.content {
-    grid-area: content;
-}
-
+/* FOOTER */
 .footer {
     grid-area: footer;
     background: linear-gradient(135deg, #8844ee, #b07dfb);
@@ -112,4 +220,88 @@ nav a {
     padding: 30px;
 }
 
+/* RESPONSIVO */
+@media (max-width: 1200px) {
+    .estrutura {
+        grid-template-areas: 
+        "header header header"
+        "sidenav content content"
+        "sidenav anuncios anuncios"
+        "footer footer footer"
+        ;
+    }
+}
 
+@media (max-width: 760px) {
+    /* ESTRUTURA */
+    .estrutura {
+        grid-template-columns: 100%;
+        grid-template-areas: 
+            "header"
+            "sidenav"
+            "content"
+            "anuncios"
+            "footer"
+        ;
+    }
+
+    /*HEADER*/
+    .header {
+        grid-template-columns: auto;
+    }
+    .logo {
+        margin-bottom: 20px;
+    }
+    .header nav a {
+        font-size: 1em;
+    }
+    .header li + li {
+        margin-left: 12px;
+    }
+
+    /* SIDENAV */
+    .sidenav {
+        position: relative;
+        padding: 0 30px;
+        /*Barra de rolagem com suporte ao touch*/
+        overflow-x: auto; /* Adiciona uma barra lateral se quebrar o container */
+        -webkit-overflow-scrolling: touch; /* Suporte para o Safari*/
+        -ms-overflow-style: -ms-autohiding-scrollbar; /* Suporte para Microsoft*/
+    }
+    .sidenav::after {
+        content: '→';
+        position: absolute;
+        top: 0;
+        right: 30px;
+        color: rgba(0, 0, 0, .3);
+        /* Animação da seta */
+        animation: seta .6s ease-in 0s infinite alternate;
+    }
+
+    .sidenav ul {
+        display: flex;
+    }
+
+    .sidenav ul li {
+        flex: 1 0 60px;
+    }
+    .sidenav li a {
+        margin: 30px 30px 30px 0;
+    }
+}
+
+@media (max-width: 600px) {
+    .content {
+        grid-template-columns: auto;
+    }
+}
+
+/* Keyframe da animação da seta */
+@keyframes seta {
+    from {
+        right: 30px;
+    }
+    to {
+        right: 4px;
+    }
+}
